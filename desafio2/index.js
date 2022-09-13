@@ -18,7 +18,7 @@ class Container {
 
     async getById(id) {
         let objs = await this.getAll();
-        let obj = objs.filter(el=>el.id == id)
+        let obj = objs.find(el=>el.id == id)
         if(obj.length == 0) {
             return `Producto no encontrado ${id}`
         }else {
@@ -90,3 +90,5 @@ setTimeout(()=> {
 //     })
 //     .catch((err=>console.log(err)))
 // },5000)
+
+module.exports

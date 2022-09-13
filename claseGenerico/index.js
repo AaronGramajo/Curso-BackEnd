@@ -58,65 +58,73 @@
 //     numeros[numero]++
 // }
 
-const productos = [
-    { id:1, nombre:'Escuadra', precio:323.45 },
-    { id:2, nombre:'Calculadora', precio:234.56 },
-    { id:3, nombre:'Globo Terráqueo', precio:45.67 },
-    { id:4, nombre:'Paleta Pintura', precio:456.78 },
-    { id:5, nombre:'Reloj', precio:67.89 },
-    { id:6, nombre:'Agenda', precio:78.90 }
-]
+// const productos = [
+//     { id:1, nombre:'Escuadra', precio:323.45 },
+//     { id:2, nombre:'Calculadora', precio:234.56 },
+//     { id:3, nombre:'Globo Terráqueo', precio:45.67 },
+//     { id:4, nombre:'Paleta Pintura', precio:456.78 },
+//     { id:5, nombre:'Reloj', precio:67.89 },
+//     { id:6, nombre:'Agenda', precio:78.90 }
+// ]
 
-const getNames=()=>{
-    return productos.map(el=>el.nombre).join(', ')
-}
+// const getNames=()=>{
+//     return productos.map(el=>el.nombre).join(', ')
+// }
 
-const getTotalPrice=()=>{
-    let total=0
-    productos.forEach(price=>total+=price.precio)
-    return total
-}
+// const getTotalPrice=()=>{
+//     let total=0
+//     productos.forEach(price=>total+=price.precio)
+//     return total
+// }
 
-const precioPromedio=()=>{
-    return getTotalPrice() / productos.length
-}
+// const precioPromedio=()=>{
+//     return getTotalPrice() / productos.length
+// }
 
-const getproduPrecioMenor=()=>{
-    let min = productos[0].precio
-    let prod = productos[0].nombre
-    for (const prods of productos) {
-        if(prods.precio < min) {
-            min = prods.precio
-            prod = prods.nombre
-        }
-    }
-    // return {prods:prod,precio:min}
-    return prod
-}
+// const getproduPrecioMenor=()=>{
+//     let min = productos[0].precio
+//     let prod = productos[0].nombre
+//     for (const prods of productos) {
+//         if(prods.precio < min) {
+//             min = prods.precio
+//             prod = prods.nombre
+//         }
+//     }
+//     // return {prods:prod,precio:min}
+//     return prod
+// }
 
-const getproduPrecioMayor=()=>{
-    let min = productos[0].precio
-    let prod = productos[0].nombre
-    for (const prods of productos) {
-        if(prods.precio > min) {
-            min = prods.precio
-            prod = prods.nombre
-        }
-    }
-    // return {prods:prod,precio:min}
-    return prod
-}
+// const getproduPrecioMayor=()=>{
+//     let min = productos[0].precio
+//     let prod = productos[0].nombre
+//     for (const prods of productos) {
+//         if(prods.precio > min) {
+//             min = prods.precio
+//             prod = prods.nombre
+//         }
+//     }
+//     // return {prods:prod,precio:min}
+//     return prod
+// }
 
-function to2decimales(valor){
-    return Number(valor.toFixed(2))
-}
+// function to2decimales(valor){
+//     return Number(valor.toFixed(2))
+// }
 
-let info = {
-    nombres:getNames(),
-    total:to2decimales(getTotalPrice()),
-    promedio:to2decimales(precioPromedio()),
-    minimo:getproduPrecioMenor(),
-    maximo:getproduPrecioMayor()
-}
+// let info = {
+//     nombres:getNames(),
+//     total:to2decimales(getTotalPrice()),
+//     promedio:to2decimales(precioPromedio()),
+//     minimo:getproduPrecioMenor(),
+//     maximo:getproduPrecioMayor()
+// }
 
-console.log(info)
+// console.log(info)
+
+const moment = require('moment')
+const time = moment().format("MMM Do YY")
+const myDate = moment().format("March 8th ")
+console.log(`hoy es ${time}`)
+console.log(`yo naci en ${myDate} `)
+console.log()
+console.log()
