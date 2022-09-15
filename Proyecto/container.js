@@ -18,7 +18,7 @@ class Container {
 
     async getById(id) {
         let objs = await this.getAll();
-        let obj = objs.find(el=>el.id == id)
+        let obj = objs.find(el=>el.id === id)
         if(obj.length == 0) {
             return `Producto no encontrado ${id}`
         }else {
@@ -55,45 +55,13 @@ class Container {
 
     async getRandom() {
         let objs = await this.getAll();
-        return this.getById(Math.ceil(Math.random() * objs.length))
+        let objRandom = this.getById(Math.ceil(Math.random() * objs.length))
+        if(objRandom.length == 0) {
+            return `no hay ningun producto`
+        } else {
+            return objRandom
+        }
     }
 }
 
-let productos = new Container('./productos.txt')
-// productos.save({title:'Nintendo Switch', price:148.000, thumbnail:'./fotoDeProductos/fotoDeSwitch.png'})
-// productos.save({title:'PlayStation 5', price:280.000, thumbnail:'./fotoDeProductos/fotoDePlayStation5.png'})
-// productos.save({title:'Xbox Series X', price:220.000, thumbnail:'./fotoDeProductos/fotoDeXboxSeriesX.png'})
-
-// setTimeout(()=> {
-//     productos.getById(1659501939434)
-//     .then((resp)=>{
-//         console.log(resp)
-//     })
-//     .catch((err=>console.log(err)))
-// },2000)
-
-// setTimeout(()=> {
-//     productos.getAll()
-//     .then((resp)=>{
-//         console.log(resp)
-//     })
-//     .catch((err=>console.log(err)))
-// },3000)
-
-// setTimeout(()=> {
-//     productos.deleteById(1659501810912)
-//     .then((resp)=>{
-//         console.log(`se borro con exito`)
-//     })
-//     .catch((err=>console.log(err)))
-// },4000)
-
-// setTimeout(()=> {
-//     productos.deleteAll()
-//     .then((resp)=>{
-//         console.log(`se borro con exito`)
-//     })
-//     .catch((err=>console.log(err)))
-// },5000)
-
-module.exports
+module.exports = Container

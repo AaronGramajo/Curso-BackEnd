@@ -121,10 +121,10 @@
 
 // console.log(info)
 
-const moment = require('moment')
-const time = moment().format("MMM Do YY")
-const myDate = moment().format("March 8th ")
-console.log(`hoy es ${time}`)
-console.log(`yo naci en ${myDate} `)
-console.log()
-console.log()
+// const moment = require('moment')
+// const time = moment().format("MMM Do YY")
+// const myDate = moment().format("March 8th ")
+// console.log(`hoy es ${time}`)
+// console.log(`yo naci en ${myDate} `)
+// console.log()
+// console.log()
