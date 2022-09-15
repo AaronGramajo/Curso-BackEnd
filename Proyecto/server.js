@@ -34,5 +34,5 @@ app.get('/productos', (request, response) => {
 })
 
 app.get('/productoRandom', (request, response) => {
-    response.json(productos.getById(1659501917716))
+    response.json(productos.getRandom())
 })
