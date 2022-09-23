@@ -95,5 +95,3 @@ let productos = new Container('./productos.txt')
 //     })
 //     .catch((err=>console.log(err)))
 // },5000)
-
-module.exports

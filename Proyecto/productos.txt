@@ -2,19 +2,24 @@
   {
     "id": 1659501917716,
     "title": "Nintendo Switch",
-    "price": 148,
+    "price": 148000,
     "thumbnail": "./fotoDeProductos/fotoDeSwitch.png"
   },
   {
     "id": 1659501927530,
     "title": "PlayStation 5",
-    "price": 280,
+    "price": 280000,
     "thumbnail": "./fotoDeProductos/fotoDePlayStation5.png"
   },
   {
     "id": 1659501939434,
     "title": "Xbox Series X",
-    "price": 220,
+    "price": 220000,
     "thumbnail": "./fotoDeProductos/fotoDeXboxSeriesX.png"
+  },
+  {
+    "id": 1663824216205,
+    "title": "prueba",
+    "price": "123456"
   }
 ]

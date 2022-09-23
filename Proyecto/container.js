@@ -1,67 +1,84 @@
-const {promises:fs} = require('fs')
+const fs = require('fs')
 
 class Container {
-    constructor(route){
+    constructor(route) {
         this.route = route;
     }
 
-    async save(obj) {
-        let objs = await this.getAll();
-        obj = {id:Date.now(),...obj}
-        let datos = [...objs,obj]
+    getAll() {
         try {
-            await fs.writeFile(this.route, JSON.stringify(datos,null,2))
+            const objs = fs.readFileSync(this.route, 'utf-8')
+            return JSON.parse(objs)
+        } catch (error) {
+            console.log(error)
+            return []
+        }
+    }
+
+    save(obj) {
+        let objs = this.getAll();
+        obj = {
+            id: Date.now(),
+            ...obj
+        }
+        let datos = [...objs, obj]
+        try {
+            fs.promises.writeFile(this.route, JSON.stringify(datos, null, 2))
         } catch (error) {
             throw new Error(`Error al guardar los datos ${error}`)
         }
     }
 
-    async getById(id) {
-        let objs = await this.getAll();
-        let obj = objs.find(el=>el.id === id)
-        if(obj.length == 0) {
+    update(obj, id) {
+        let objs = this.getAll();
+        try {
+            const {title, price} = obj;
+            const product = objs.find(prod => prod.id === parseInt(id))
+            if (product) {
+                product.title = title;
+                product.price = price;
+                return product;
+            } else {
+                return `pruducto no encontrado ${id}`;
+            }
+        } catch (error) {
+            throw new Error(error);
+        }
+    }
+    
+    getById(id) {
+        let objs = this.getAll();
+        let obj = objs.find(el => el.id === parseInt(id))
+        if (obj.length == 0) {
             return `Producto no encontrado ${id}`
-        }else {
+        } else {
             return obj
         }
     }
-
-    async getAll() {
-        try {
-            const objs = await fs.readFile(this.route)
-            return JSON.parse(objs)
-        } catch (error) {
-            return []
-        }
+    
+    getRandom() {
+        let objs = this.getAll();
+        return this.getById(Math.ceil(Math.random() * objs.length))
     }
 
-    async deleteById(id) {
-        let objs = await this.getAll();
-        let filteredList = objs.filter((item => item.id !== id))
+    deleteById(id) {
+        let objs = this.getAll();
+        let filteredList = objs.filter((item => item.id !== parseInt(id)))
         try {
-            await fs.writeFile(this.route,JSON.stringify(filteredList,null,2))
+            fs.writeFileSync(this.route, JSON.stringify(filteredList, null, 2))
         } catch (error) {
             return `No se puede borrar ese registro`
         }
     }
 
-    async deleteAll() {
+    deleteAll() {
         try {
-            await fs.writeFile(this.route,JSON.stringify([],null,2))
+            fs.writeFileSync(this.route, JSON.stringify([], null, 2))
         } catch (error) {
             return `No se pudo borrar los datos`
         }
     }
 
-    async getRandom() {
-        let objs = await this.getAll();
-        let objRandom = this.getById(Math.ceil(Math.random() * objs.length))
-        if(objRandom.length == 0) {
-            return `no hay ningun producto`
-        } else {
-            return objRandom
-        }
-    }
 }
 
 module.exports = Container
