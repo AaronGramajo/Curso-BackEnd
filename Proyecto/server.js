@@ -1,6 +1,5 @@
 const express = require('express')
 const Container = require('./container.js')
-// const Routes = require('./routes.js')
 
 const app = express()
 const {json,urlencoded, Router, static} = express
@@ -38,22 +37,23 @@ router.get('/api/products/:id', (req, res) =>{
 ///add item
 router.post('/api/products', (req, res) => {
     const {title, price} = req.body
-    const newproduct = products.save({title, price})
+    const newProduct = products.save({title, price})
     res.json({
         message :'POST recibido',
-        producto: newproduct})
+        producto: newProduct})
 })
 
 /// update item
 router.put('/api/products/:id', (req, res) => {
     const { id } = req.params
     const {title, price} = req.body
+    console.log(req.body)
     const updateProduct = {title, price}
-    const updatedporduct = products.update(updateProduct, id)
+    const updatedProduct = products.update(updateProduct, id)
     res.json({
         mensaje: 'PUT recibido',
         id: id,
-        nuevo: updatedporduct
+        nuevo: updatedProduct
     })
 })
 

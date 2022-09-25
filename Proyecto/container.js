@@ -21,6 +21,7 @@ class Container {
             id: Date.now(),
             ...obj
         }
+        console.log(obj)
         let datos = [...objs, obj]
         try {
             fs.promises.writeFile(this.route, JSON.stringify(datos, null, 2))
@@ -37,6 +38,7 @@ class Container {
             if (product) {
                 product.title = title;
                 product.price = price;
+                fs.promises.writeFile(this.route, JSON.stringify(objs, null, 2))
                 return product;
             } else {
                 return `pruducto no encontrado ${id}`;
