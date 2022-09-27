@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+</style>
+<%- include('../partials/head') %>
+
+<body>
+    <%- include('../partials/header') %>
+    <h2>Bienvenido <%= nombreDeUsuario %></h2>
+    <%- include('../partials/formulario') %>
+    <% if (usuarios.length !== 0) { %>
+        <%- include('../partials/historial') %>
+    <% } else { %>
+        <h2>No se encuentra datos</h2>
+    <% } %>
+    <%- include('../partials/footer') %>
+</body>
+
+</html>
