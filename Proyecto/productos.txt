@@ -18,13 +18,9 @@
     "thumbnail": "./fotoDeProductos/fotoDeXboxSeriesX.png"
   },
   {
-    "id": 1663824216205,
+    "id": 1664504924677,
     "title": "prueba",
-    "price": "123456"
-  },
-  {
-    "id": 1664073741817,
-    "title": "Meta Quest 2",
-    "price": 145000
+    "price": "8762",
+    "thumbnail": "asjkdfn"
   }
 ]

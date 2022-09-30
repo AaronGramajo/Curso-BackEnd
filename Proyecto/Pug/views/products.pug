@@ -1,0 +1,21 @@
+html 
+    head 
+        title Product list 
+    body 
+        h2 Product List 
+        if listExist 
+            table 
+                tr 
+                    th title:
+                    th price:
+                    th thumbnail: 
+                each product in products 
+                    tr 
+                        th= product.title 
+                        th= product.price 
+                        th 
+                            img(src= product.thumbnail, alt="" border=1 height=48 width=48)
+        else
+            p No se encuentra datos 
+        a(href="/")
+            button Go Home 

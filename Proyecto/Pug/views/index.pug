@@ -1,0 +1,23 @@
+html 
+    head 
+        title Usando Pug 
+    body
+        div 
+            h1 Enter Products
+            form(action="/products" method='post') 
+                div 
+                    label(for="title") Product name
+                    br
+                    input(type="text" id="title" name="title")
+                div 
+                    label(for="price") Price
+                    br
+                    input(type="number" id="price" name="price")
+                div 
+                    label(for="thumbnail") Product URL
+                    br
+                    input(type="text" id="thumbnail" name="thumbnail")
+                div 
+                    button(type="submit") Send
+            a(href="/products") 
+                button Go to Products

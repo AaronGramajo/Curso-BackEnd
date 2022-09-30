@@ -1,0 +1,23 @@
+<div>
+    <h2>Product List</h2>
+    <% if(productsExist) { %>
+    <div>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Photo URL</th>
+            </tr>
+            <% products.forEach(function(product) { %>
+                <tr>
+                    <th><%= product.title%></th>
+                    <th><%= product.price%></th>
+                    <th><img src=<%= product.thumbnail%> alt="" border=1 height=48 width=48></th></th>
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+    <% } else { %>
+        <p>There are no products</p>
+        <% } %>
+</div>

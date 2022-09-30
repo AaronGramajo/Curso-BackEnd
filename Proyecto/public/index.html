@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add products</title>
 </head>
 <body>
+    <H1>Enter Product</H1>
     <form action="/products" method="post" enctype="multipart/form-data">
         <label for="title">Product name</label><br>
-        <input type="text" name="title" id="1">
-        <label for="price">price</label><br>
-        <input type="text" name="price" id="2">
-        <button type="submit">Enviar</button>
+        <input type="text" name="title" id="title"><br>
+        <label for="price">Price</label><br>
+        <input type="number" name="price" id="price"><br>
+        <label for="Urlpic">Product photo URL</label><br>
+        <input type="input" name="thumbnail" id="thumbnail"><br>
+        <button type="submit">Send</button>
     </form>
+    <div>
+        <a href="/products"> <button>Go to pruducts</button> </a>
+    </div>
 </body>
 </html>
