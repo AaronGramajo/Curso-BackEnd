@@ -1,24 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add products</title>
+    <script src="/socket.io/socket.io.js"></script>
 </head>
+
 <body>
-    <H1>Enter Product</H1>
-    <form action="/products" method="post" enctype="multipart/form-data">
-        <label for="title">Product name</label><br>
-        <input type="text" name="title" id="title"><br>
-        <label for="price">Price</label><br>
-        <input type="number" name="price" id="price"><br>
-        <label for="Urlpic">Product photo URL</label><br>
-        <input type="input" name="thumbnail" id="thumbnail"><br>
-        <button type="submit">Send</button>
-    </form>
     <div>
-        <a href="/products"> <button>Go to pruducts</button> </a>
+        <h1>Enter Product</h1>
+        <form onsubmit="return addProduct(this)" enctype="multipart/form-data">
+            <label for="title">Product name</label><br>
+            <input type="text" name="title" id="title"><br>
+            <label for="price">Price</label><br>
+            <input type="number" name="price" id="price"><br>
+            <label for="Urlpic">Product photo URL</label><br>
+            <input type="input" name="thumbnail" id="thumbnail"><br>
+            <button>Send</button>
+        </form>
+        <h2>List of products</h2>
+        <div>
+            <div id="tableProducts"></div>
+        </div>
+        <hr>
     </div>
+    <div>
+        <h3>Chat messages</h3>
+        <form onsubmit="return addMessage(this)">
+            <label for="email">Email</label><br>
+            <input type="email" name="email" id="email" placeholder="Pepito@gmail.com" required>
+            <input type="text" name="message" id="textMessage" placeholder="Write message here..." required>
+            <button>Send message</button>
+        </form><hr>
+        <div id="messages"></div>
+    </div>
+
+    <script src="/main.js"></script>
 </body>
+
 </html>
