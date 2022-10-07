@@ -1,9 +1,9 @@
 const express = require('express')
 const {Server: HttpServer} = require('http')
 const {Server: IOServer} = require('socket.io')
-const routeProducts = require('./routes/routes')
-const Products = require('./services/container')
-const RouteMessages = require('./services/messages.js')
+const Container = require('./services/container.js')
+const Messages = require('./services/messages.js')
+const routeProducts = require('./routes/routes.js')
 
 const app = express()
 const httpServer = new HttpServer(app)
@@ -18,13 +18,13 @@ app.use(urlencoded({extended:true}))
 app.use(static(__dirname + '/public'))
 app.use('/api/products', routeProducts)
 
-const messages = new RouteMessages()
-const productList = new Products()
+const messages = new Messages()
+const productList = new Container('./productos.txt')
 
 io.on('connection', async (socket) => {
     console.log('se conecto un usuario')
     socket.emit('message', await messages.getAll())
-    socket.emit('productList', productList.getall())
+    socket.emit('productList', productList.getAll())
     
     socket.on('new-message', async (data) => {
         await messages.save(data)
@@ -32,8 +32,8 @@ io.on('connection', async (socket) => {
     })
 
     socket.on('newProductList', data => {
-        productList.push(data)
-        io.sockets.emit('productList', productList.getall())
+        productList.save(data)
+        io.sockets.emit('productList', productList.getAll())
     })
 })
 

@@ -14,11 +14,11 @@
         <h1>Enter Product</h1>
         <form onsubmit="return addProduct(this)" enctype="multipart/form-data">
             <label for="title">Product name</label><br>
-            <input type="text" name="title" id="title"><br>
+            <input type="text" name="title" id="title" required><br>
             <label for="price">Price</label><br>
-            <input type="number" name="price" id="price"><br>
+            <input type="number" name="price" id="price" required><br>
             <label for="Urlpic">Product photo URL</label><br>
-            <input type="input" name="thumbnail" id="thumbnail"><br>
+            <input type="text" name="thumbnail" id="thumbnail" required><br>
             <button>Send</button>
         </form>
         <h2>List of products</h2>
@@ -38,7 +38,8 @@
         <div id="messages"></div>
     </div>
 
-    <script src="/main.js"></script>
+    <script src="./js/main.js"></script>
+    <script src="./js/chat.js"></script>
 </body>
 
 </html>

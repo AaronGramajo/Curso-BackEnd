@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-class messages {
+class Messages {
     
     async getAll() {
         try {
@@ -22,5 +22,5 @@ class messages {
         }
     }
 }
-module.exports = messages
+module.exports = Messages
 
