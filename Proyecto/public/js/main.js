@@ -28,37 +28,22 @@ const addProduct = (e) => {
 
 const renderProduct = (data) => {
     let table = '<table class="table table-striped table-dark">'
-    table += '<thead><tr><th>id</th><th>Title</th><th>Price</th><th>Photo URL</th></tr></thead>'
+    table += '<thead><tr><th>Id</th><th>Timestamp</th><th>Title</th><th>Description</th><th>Serial Code</th><th>Price</th><th>Photo URL</th><th>Stock</th></tr></thead>'
     table += '<tbody>'
     data.forEach(item => {
         table += `<tr>
             <th>${item.id}</th>
+            <th>${item.timestamp}</th>
             <th>${item.title}</th>
+            <th>${item.description}</th>
+            <th>${item.code}</th>
             <th>${item.price}</th>
             <th><img src=${item.thumbnail} alt="" border=1 height=48 width=48></th>
+            <th>${item.stock}</th>
         </tr>`
     })
     table += '</tbody></table>'
     return document.querySelector('#tableProducts').innerHTML = table
-
-    // const html = data.map((item) => {
-    //     return (`
-    //         <table>
-    //             <tr>
-    //                 <th>Title</th>
-    //                 <th>Price</th>
-    //                 <th>Photo URL</th>
-    //             </tr>
-    //             ${item.forEach(el => {`
-    //                 <tr>
-    //                     <th>${el.title}</th>
-    //                     <th>${el.price}</th>
-    //                     <th><img src=${el.thumbnail} alt="" border=1 height=48 width=48></th>
-    //                 </tr>`
-    //             })}
-    //         </table>`)
-    // }).join('')
-    // document.querySelector('#tableProducts').innerHTML = html
 }
 
 server.on('productList', (data) => {

@@ -15,10 +15,16 @@
         <form onsubmit="return addProduct(this)" enctype="multipart/form-data">
             <label for="title">Product name</label><br>
             <input type="text" name="title" id="title" required><br>
+            <label for="description">Product description</label><br>
+            <input type="text" name="description" id="description" required><br>
+            <label for="code">Serial code</label><br>
+            <input type="number" name="code" id="code" required><br>
             <label for="price">Price</label><br>
             <input type="number" name="price" id="price" required><br>
-            <label for="Urlpic">Product photo URL</label><br>
+            <label for="thumbnail">Product photo URL</label><br>
             <input type="text" name="thumbnail" id="thumbnail" required><br>
+            <label for="stock">Stock</label><br>
+            <input type="number" name="stock" id="stock" required><br>
             <button>Send</button>
         </form>
         <h2>List of products</h2>

@@ -1,11 +1,11 @@
 const express = require('express')
 // const multer = require('multer')
-const Container = require('../services/container.js')
+const Container = require('../services/products.js')
 
 const {Router} = express
 const router = Router()
 
-const products = new Container('./productos.txt')
+const products = new Container('./container/products.txt')
 // let storage = multer.diskStorage({
 //     destination: (req, file, cb) => {
 //         cd(null, 'uploads')
@@ -32,16 +32,16 @@ router.get('/:id',(req, res) => {
 
 ///add item
 router.post('/', (req, res, next) => {
-    const {title, price, thumbnail} = req.body
-    const newproduct = products.save({title, price, thumbnail})
-    res.status(200).json(newproduct)
+    const {title, description, code, price, thumbnail, stock} = req.body
+    const newProduct = products.save({title, description, code, price, thumbnail, stock})
+    res.status(200).json(newProduct)
 })
 
 /// update item
 router.put('/:id',(req, res) => {
     const {id} = req.params
-    const {title, price, thumbnail} = req.body
-    const updateProduct = {title, price, thumbnail}
+    const {title, description, code, price, thumbnail, stock} = req.body
+    const updateProduct = {title, description, code, price, thumbnail, stock}
     const updatedporduct = products.update(updateProduct, id)
     res.status(201).json(updatedporduct)
 })

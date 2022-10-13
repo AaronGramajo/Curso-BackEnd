@@ -1,9 +1,12 @@
 const express = require('express')
 const {Server: HttpServer} = require('http')
 const {Server: IOServer} = require('socket.io')
-const Container = require('./services/container.js')
+
+const Container = require('./services/products.js')
 const Messages = require('./services/messages.js')
-const routeProducts = require('./routes/routes.js')
+
+const routeProducts = require('./routes/productRoutes.js')
+const routeCart = require('./routes/cartRoutes.js')
 
 const app = express()
 const httpServer = new HttpServer(app)
@@ -17,9 +20,10 @@ app.use(json())
 app.use(urlencoded({extended:true}))
 app.use(static(__dirname + '/public'))
 app.use('/api/products', routeProducts)
+app.use('/api/cart', routeCart)
 
-const messages = new Messages()
-const productList = new Container('./productos.txt')
+const messages = new Messages('./container/messages.txt')
+const productList = new Container('./container/products.txt')
 
 io.on('connection', async (socket) => {
     console.log('se conecto un usuario')

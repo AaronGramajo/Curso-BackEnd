@@ -19,9 +19,9 @@ class Container {
         let objs = this.getAll();
         obj = {
             id: Date.now(),
+            timestamp: Date.now().toLocaleString(),
             ...obj
         }
-        console.log(obj)
         let datos = [...objs, obj]
         try {
             fs.promises.writeFile(this.route, JSON.stringify(datos, null, 2))
@@ -33,11 +33,15 @@ class Container {
     update(obj, id) {
         let objs = this.getAll();
         try {
-            const {title, price} = obj;
+            const {title, description, code, price, thumbnail, stock} = obj;
             const product = objs.find(prod => prod.id === parseInt(id))
             if (product) {
                 product.title = title;
+                product.description = description;
+                product.code = code;
                 product.price = price;
+                product.thumbnail = thumbnail;
+                product.stock = stock;
                 fs.promises.writeFile(this.route, JSON.stringify(objs, null, 2))
                 return product;
             } else {
