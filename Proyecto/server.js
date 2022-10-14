@@ -21,6 +21,11 @@ app.use(urlencoded({extended:true}))
 app.use(static(__dirname + '/public'))
 app.use('/api/products', routeProducts)
 app.use('/api/cart', routeCart)
+app.all('*', (req, res) => {
+    return res.status(404).send({
+        Error: 'path not found'
+    })
+})
 
 const messages = new Messages('./container/messages.txt')
 const productList = new Container('./container/products.txt')

@@ -20,13 +20,13 @@ class Cart {
         if (objs.length == 0) {
             cart = {
                 id: 1,
-                timestamp: Date.now().toLocaleString(),
+                timestamp: Date.now(),
                 products: [...cart]
             }
         } else {
             cart = {
                 id: objs.length + 1,
-                timestamp: Date.now().toLocaleString(),
+                timestamp: Date.now(),
                 products: [...cart]
             }
         }
