@@ -1,56 +1,66 @@
 const express = require('express')
-// const multer = require('multer')
-const Container = require('../services/products.js')
+const Products = require('../containerDB/productsMDB.js')
+
+const { options } = require('../database/config.js')
+const knex = require('knex') (options.mysql)
 
 const {Router} = express
 const router = Router()
 
-const products = new Container('./container/products.txt')
-// let storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//         cd(null, 'uploads')
-//     },
-//     filename: (req, file, cb) => {
-//         cb(null, file.originalname)
-//     }
-// })
-// const upload = multer({storage: storage})
+const products = new Products(knex, 'products')
 
-//////////////// rutas //////////////
+//////////////// rutas ////////////////
+
 ///get all items
-router.get('/', (req, res) => {
-    if(products.error) res.status(404).json({message: 'Products not found'})
-    res.status(200).json(products.getAll())
+router.get('/', async (req, res) => {
+    try {
+        res.status(200).json(await products.getAll())
+    } catch (error) {
+        res.status(404).json({message: `Products not found ${error}`})
+    }
 })
 
 ///search item
-router.get('/:id',(req, res) => {
-    const {id} = req.params
-    if(products.error) res.status(404).json({message: 'Product not found'})
-    res.status(200).json(products.getById(id))
+router.get('/:id', async (req, res) => {
+    try {
+        const product = await products.getById(parseInt(req.params.id))
+        res.status(200).json(product)
+    } catch (error) {
+        res.status(404).json({message: `Product not found ${error}`})
+    }
 })
 
 ///add item
-router.post('/', (req, res, next) => {
+router.post('/', async (req, res) => {
     const {title, description, code, price, thumbnail, stock} = req.body
-    const newProduct = products.save({title, description, code, price, thumbnail, stock})
-    res.status(200).json(newProduct)
+    try {
+        if (title && description && code && price && thumbnail && stock) {
+            await products.save({title, description, code, price, thumbnail, stock})
+            res.status(201).json({message: 'Product added'})
+        } 
+    } catch (error) {
+        res.status(400).json({message: `Problem adding product ${error}`})
+    }
 })
 
 /// update item
-router.put('/:id',(req, res) => {
-    const {id} = req.params
+router.put('/:id', async (req, res) => {
     const {title, description, code, price, thumbnail, stock} = req.body
     const updateProduct = {title, description, code, price, thumbnail, stock}
-    const updatedporduct = products.update(updateProduct, id)
-    res.status(201).json(updatedporduct)
+    try {
+        res.status(201).json(await products.update(updateProduct, parseInt(req.params.id)))
+    } catch (error) {
+        res.status(400).json({message: `Problem updating product ${error}`})
+    }
 })
 
 /// delete item
-router.delete('/:id',(req, res) => {
-    const {id} = req.params
-    const deletedProduct = products.deleteById(id)
-    res.status(200).json(deletedProduct)
+router.delete('/:id', async (req, res) => {
+    try {
+        res.status(200).json(await products.deleteById(parseInt(req.params.id)))
+    } catch (error) {
+        res.status(400).json({message: `Problem deleting product ${error}`})
+    }
 })
 
 module.exports = router

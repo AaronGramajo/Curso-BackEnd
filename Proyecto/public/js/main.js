@@ -15,8 +15,11 @@ const Fetch = async (url, options) => {
 const addProduct = (e) => {
     const product = {
         title: document.querySelector('#title').value,
+        description: document.querySelector('#description').value,
+        code: document.querySelector('#code').value,
         price: document.querySelector('#price').value,
-        thumbnail: document.querySelector('#thumbnail').value
+        thumbnail: document.querySelector('#thumbnail').value,
+        stock: document.querySelector('#stock').value
     }
     const options = {
         method: 'POST',

@@ -9,7 +9,7 @@ const addMessage = (e) => {
     const message = {
         user: email.value,
         message: textMessage.value,
-        date: Date()
+        date: new Date().toLocaleString()
     }
     socket.emit('new-message', message)
     textMessage.value = ''

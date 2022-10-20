@@ -1,18 +1,26 @@
 const express = require('express')
 const {Server: HttpServer} = require('http')
 const {Server: IOServer} = require('socket.io')
-
-const Container = require('./services/products.js')
-const Messages = require('./services/messages.js')
-
-const routeProducts = require('./routes/productRoutes.js')
-const routeCart = require('./routes/cartRoutes.js')
-
+//////////////// Io server socket ////////////////
 const app = express()
 const httpServer = new HttpServer(app)
 const io = new IOServer(httpServer)
 const {json, urlencoded, static} = express
 
+//////////////// products and messages ////////////////
+const Products = require('./containerDB/productsMDB.js')
+const Messages = require('./containerDB/chatSQL3.js')
+const { options } = require('./database/config.js')
+const knexProducts = require('knex') (options.mysql)
+const knexMessages = require('knex') (options.sqlite)
+const messages = new Messages(knexMessages, 'messages')
+const productList = new Products(knexProducts, 'products')
+
+//////////////// routes ////////////////
+const routeProducts = require('./routes/productRoutes.js')
+const routeCart = require('./routes/cartRoutes.js')
+
+//////////////// template engine ////////////////
 app.set('views', './views')
 app.set('view engine', 'ejs')
 
@@ -27,22 +35,24 @@ app.all('*', (req, res) => {
     })
 })
 
-const messages = new Messages('./container/messages.txt')
-const productList = new Container('./container/products.txt')
-
+//////////////// webSocket ////////////////
 io.on('connection', async (socket) => {
     console.log('se conecto un usuario')
     socket.emit('message', await messages.getAll())
-    socket.emit('productList', productList.getAll())
+    socket.emit('productList', await productList.getAll())
     
     socket.on('new-message', async (data) => {
         await messages.save(data)
         io.sockets.emit('message', await messages.getAll())
     })
 
-    socket.on('newProductList', data => {
-        productList.save(data)
-        io.sockets.emit('productList', productList.getAll())
+    socket.on('newProductList', async data => {
+        await productList.save(data)
+        io.sockets.emit('productList', await productList.getAll())
+    })
+
+    socket.on('disconnect', () => {
+        console.log('user disconnected')
     })
 })
 
