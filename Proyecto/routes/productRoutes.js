@@ -1,13 +1,21 @@
 const express = require('express')
 const Products = require('../containerDB/productsMDB.js')
+const ProductsDaoFile = require('../doas/products/productsDaoFile.js')
+const ProductsDaoFirebase = require('../doas/products/productsDaoFirebase.js')
+const ProductsDaoMem = require('../doas/products/productsDaoMem.js')
+const ProductsDaoMongoDb = require('../doas/products/productsDaoMongoDb.js')
 
-const { options } = require('../database/config.js')
+const { options } = require('../config.js')
 const knex = require('knex') (options.mysql)
 
 const {Router} = express
 const router = Router()
 
-const products = new Products(knex, 'products')
+// const products = new Products(knex, 'products')
+// const products = new ProductsDaoFile()
+// const prodcuts = new ProductsDaoFirebase()
+// const products = new ProductsDaoMem()
+const products = new ProductsDaoMongoDb()
 
 //////////////// rutas ////////////////
 

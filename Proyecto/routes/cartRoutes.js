@@ -1,11 +1,11 @@
 const {Router} = require('express')
-const Cart = require('../services/cart.js')
-const Container = require('../services/products.js')
+const CartsDaoFile = require('../doas/carts/cartsDaoFile.js')
+const ProductsDaoFile = require('../doas/products/productsDaoFile.js')
 const admin = require('../middlewares/Admin.js')
 
 const cartRouter = Router()
-const carts = new Cart('./container/carts.txt')
-const products = new Container('./container/products.txt')
+const carts = new CartsDaoFile()
+const products = new ProductsDaoFile()
 
 ///create new cart
 cartRouter.post('/', (req, res) => {
@@ -39,15 +39,14 @@ cartRouter.get('/:id/products', admin,(req, res) => {
 })
 
 ///add item to cart
-// come back to this
 cartRouter.post('/:id/products', (req, res) => {
     const {id} = req.params
     let cart = carts.getById(id)
     const body = req.body.id_prod
-    let newProducts = body.forEach(id_prod => {
+    body.forEach(id_prod => {
 		let prod = products.getById(id_prod)
 		cart.products.push(prod) })
-    const newCart = carts.update(cart)
+    carts.update(cart)
     res.status(200).json({message: 'products added to cart', cart: cart})
 })
 

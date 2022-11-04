@@ -11,7 +11,7 @@ const {json, urlencoded, static} = express
 //////////////// products and messages ////////////////
 const Products = require('./containerDB/productsMDB.js')
 const Messages = require('./containerDB/chatSQL3.js')
-const { options } = require('./database/config.js')
+const { options } = require('./config.js')
 const knexProducts = require('knex') (options.mysql)
 const knexMessages = require('knex') (options.sqlite)
 const messages = new Messages(knexMessages, 'messages')
