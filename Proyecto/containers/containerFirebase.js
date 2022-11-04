@@ -1,6 +1,13 @@
+let admin = require("firebase-admin");
+let serviceAccount = require("../utils/ecommerce-backend-coderh-c0001-firebase-adminsdk-8izyy-bbb7ca5e0c.json");
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount)
+});
+
 class ContainerFirebase {
     constructor(collection){
-        this.collection = collection;
+        this.db = admin.firestore()
+        this.collection = this.db.collection(collection);
     }
 
     async getAll() {
@@ -23,6 +30,34 @@ class ContainerFirebase {
             const item = await doc.get()
             const response = item.data()
             console.log(response)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    async save(product) {
+        try {
+            let doc = this.collection.doc()
+            await doc.create(product)
+        } catch (error) {
+            console.log(`no se pudo guardar el producto`, error)
+        }
+    }
+
+    async update(id, newProduct) {
+        try {
+            let doc = this.collection.doc(`${id}`)
+            const item = await doc.update(newProduct)
+            console.log('El usuario ha sido actualizado', item)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async delete(id) {
+        try {
+            const doc = this.collection.doc(`${id}`)
+            const item = await doc.delete()
+            console.log('El usuario ha sido borrado exitosamente', item)
         } catch (error) {
             console.log(error)
         }

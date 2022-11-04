@@ -1,9 +1,6 @@
 const {Connect} = require('../config')
 
 class ContainerMongoDb extends Connect {
-    constructor(model) {
-        this.model = model
-    }
 
     async getAll() {
         try {
@@ -14,8 +11,19 @@ class ContainerMongoDb extends Connect {
         }
     }
 
+    async getById(id) {
+        try {
+            const product = await this.model.find(id)
+            console.log(product)
+            return product
+        } catch (error) {
+            console.log(`product not found, ${error}`)
+        }
+    }
+
     async save(item) {
         try {
+            console.log(this.model)
             const newitem = new this.model(item)
             await newitem.save()
             console.log(`new product added ${newitem}`)
@@ -24,8 +32,8 @@ class ContainerMongoDb extends Connect {
         }
     }
 
-    async update() {
-        await this.model.updateOne()
+    async update(id, product) {
+        await this.model.updateOne(id, {$set: product})
         console.log('product updated')
     }
 

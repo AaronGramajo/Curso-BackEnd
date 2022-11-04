@@ -8,23 +8,23 @@ const productSchema = new Schema({
     },
     price: {
         type: Number,
-        max: 50,
+        max: 999999,
         required: true
     },
     thumbnail: {
         type: String,
         required: true, 
-        max: 100
+        max: 300
     },
     description: {
         type: String,
         required: true, 
-        max: 100
+        max: 300
     },
     code: {
         type: Number,
         required: true, 
-        max: 100
+        max: 9999
     },
     stock: {
         type: Number,

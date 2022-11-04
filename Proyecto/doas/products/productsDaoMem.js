@@ -1,4 +1,5 @@
 const ContainerMemory = require('../../containers/containerMemory')
+
 let products = []
 
 class ProductsDaoMem extends ContainerMemory {
