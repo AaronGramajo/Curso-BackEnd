@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
 ///search item
 router.get('/:id', async (req, res) => {
     try {
-        const product = await products.getById(parseInt(req.params.id))
+        const product = await products.getById(req.params.id)
         res.status(200).json(product)
     } catch (error) {
         res.status(404).json({message: `Product not found ${error}`})
@@ -56,7 +56,7 @@ router.put('/:id', async (req, res) => {
     const {title, description, code, price, thumbnail, stock} = req.body
     const updateProduct = {title, description, code, price, thumbnail, stock}
     try {
-        res.status(201).json(await products.update(updateProduct, parseInt(req.params.id)))
+        res.status(201).json(await products.update(updateProduct, req.params.id))
     } catch (error) {
         res.status(400).json({message: `Problem updating product ${error}`})
     }
@@ -65,7 +65,7 @@ router.put('/:id', async (req, res) => {
 /// delete item
 router.delete('/:id', async (req, res) => {
     try {
-        res.status(200).json(await products.deleteById(parseInt(req.params.id)))
+        res.status(200).json(await products.deleteById(req.params.id))
     } catch (error) {
         res.status(400).json({message: `Problem deleting product ${error}`})
     }

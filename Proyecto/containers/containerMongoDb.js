@@ -13,9 +13,8 @@ class ContainerMongoDb extends Connect {
 
     async getById(id) {
         try {
-            const product = await this.model.find(id)
+            const product = await this.model.find({_id: id})
             console.log(product)
-            return product
         } catch (error) {
             console.log(`product not found, ${error}`)
         }
@@ -32,13 +31,15 @@ class ContainerMongoDb extends Connect {
         }
     }
 
-    async update(id, product) {
-        await this.model.updateOne(id, {$set: product})
+    async update(product, id) {
+        console.log(id)
+        console.log(product)
+        await this.model.updateOne({_id: id}, {$set: {title: product.title, description: product.description, code: product.code, price: product.price, thumbnail: product.thumbnail, stock: product.stock}})
         console.log('product updated')
     }
 
     async deleteById(id) {
-        await this.model.deleteOne(id)
+        await this.model.deleteOne({_id: id})
         console.log('product deleted')
     }
 }

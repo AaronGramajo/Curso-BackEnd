@@ -9,7 +9,6 @@ class CartsDaoMongoDb extends ContainerMongoDb {
 
     async save(cart) {
         try {
-            console.log(this.model)
             const newCart = new this.model(cart)
             await newCart.save()
             console.log(`new cart added ${newCart}`)
@@ -20,7 +19,7 @@ class CartsDaoMongoDb extends ContainerMongoDb {
 
     async getById(id) {
         try {
-            return await this.model.find(id)
+            return await this.model.find({_id: id})
         } catch (error) {
             console.log(`could not find cart, ${error}`)
         }
@@ -28,16 +27,16 @@ class CartsDaoMongoDb extends ContainerMongoDb {
 
     async deleteCart(id) {
         try {
-            await this.model.deleteOne(id)
+            await this.model.deleteOne({_id: id})
             console.log('cart deleted')
         } catch (error) {
             console.log(`could not delete cart, ${error}`)
         }
     }
 
-    async update(id, product) {
+    async update(product, id) {
         try {
-            await this.model.updateOne(id, {$set: product})
+            await this.model.updateOne({_id: id}, {$set: {product: {title: product.title, description: product.description, code: product.code, price: product.price, thumbnail: product.thumbnail, stock: product.stock}}})
             console.log('cart updated')
         } catch (error) {
             console.log(`could not update product, ${error}`)
@@ -46,8 +45,8 @@ class CartsDaoMongoDb extends ContainerMongoDb {
 
     async deleteById(id, prod_id) {
         try {
-            let cart = await this.model.get(id)
-            await cart.deleteOne(prod_id)
+            let cart = await this.model.get({_id: id})
+            await cart.deleteOne({prod_id})
             console.log('product deleted')
         } catch (error) {
             console.log(`could not delete product, ${error}`)

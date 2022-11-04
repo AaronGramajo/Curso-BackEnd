@@ -15,8 +15,9 @@ class ContainerFile {
     }
 
     async getById(id) {
+        console.log(id)
         let objs = await this.getAll();
-        let obj = objs.find(el=>el.id == id)
+        let obj = objs.find(el=>el.id == parseInt(id))
         if(obj.length == 0) {
             return `Producto no encontrado ${id}`
         }else {
