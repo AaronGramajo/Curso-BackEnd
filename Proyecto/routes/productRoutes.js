@@ -1,4 +1,3 @@
-const express = require('express')
 const Products = require('../containerDB/productsMDB.js')
 const ProductsDaoFile = require('../doas/products/productsDaoFile.js')
 const ProductsDaoFirebase = require('../doas/products/productsDaoFirebase.js')
@@ -8,7 +7,7 @@ const ProductsDaoMongoDb = require('../doas/products/productsDaoMongoDb.js')
 const { options } = require('../config.js')
 const knex = require('knex') (options.mysql)
 
-const {Router} = express
+const {Router} = require('express')
 const router = Router()
 
 // const products = new Products(knex, 'products')

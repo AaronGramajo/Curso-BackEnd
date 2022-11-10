@@ -27,12 +27,14 @@ class ContainerFile {
 
     async save(obj) {
         let objs = await this.getAll();
-        obj = {
-            id: Date.now(),
-            timestamp: Date.now().toLocaleString(),
-            ...obj
+        let newId
+        if (objs.length == 0) {
+            newId = 1
+        } else {
+            newId = objs[objs.length - 1].id + 1
         }
-        let datos = [...objs, obj]
+        const newObj = {id: newId, timestamp: Date.now().toLocaleString(), ...obj}
+        let datos = [...objs, newObj]
         try {
             await fs.writeFile(this.route, JSON.stringify(datos, null, 2))
         } catch (error) {

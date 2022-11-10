@@ -12,7 +12,13 @@ class ContainerMemory {
     }
 
     save(item) {
-        const newItem = {id: `${Date.now()}`, ...item}
+        let newId
+        if (this.array.length == 0) {
+            newId = 1
+        } else {
+            newId = this.array[this.array.length - 1].id + 1
+        }
+        const newItem = {id: newId, ...item}
         this.array.push(newItem)
         return newItem
     }
@@ -22,7 +28,7 @@ class ContainerMemory {
         this.array[ind] = updatedItem
     }
 
-    delete(id) {
+    deleteById(id) {
         const ind = this.array.findIndex((prod) => prod.id === id)
         if (ind === -1) {
             return { error: 'item not found' };

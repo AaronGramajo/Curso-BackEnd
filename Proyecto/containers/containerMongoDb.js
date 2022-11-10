@@ -22,8 +22,8 @@ class ContainerMongoDb extends Connect {
 
     async save(item) {
         try {
-            console.log(this.model)
             const newitem = new this.model(item)
+            console.log(newitem)
             await newitem.save()
             console.log(`new product added ${newitem}`)
         } catch (error) {
