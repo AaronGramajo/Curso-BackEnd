@@ -39,4 +39,10 @@ class Connect {
         }
     }
 
+let admin = require("firebase-admin");
+let serviceAccount = require("../utils/ecommerce-backend-coderh-c0001-firebase-adminsdk-8izyy-bbb7ca5e0c.json");
+admin.initializeApp({
+credential: admin.credential.cert(serviceAccount)
+});
+
     module.exports = { options, Connect}
