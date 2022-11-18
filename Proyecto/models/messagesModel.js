@@ -2,7 +2,7 @@ const {Schema, model} = require('mongoose')
 
 const messageSchema = new Schema({
     author: {
-        id: {
+        email: {
             type: String,
             required: true
         },
@@ -32,6 +32,10 @@ const messageSchema = new Schema({
         }
     },
     text: {
+        type: String,
+        required: true
+    },
+    date: {
         type: String,
         required: true
     }

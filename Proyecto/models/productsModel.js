@@ -15,21 +15,22 @@ const productSchema = new Schema({
         type: String,
         required: true, 
         max: 300
-    },
-    description: {
-        type: String,
-        required: true, 
-        max: 300
-    },
-    code: {
-        type: Number,
-        required: true, 
-        max: 9999
-    },
-    stock: {
-        type: Number,
-        required: true, 
-        max: 100
     }
+    // },
+    // description: {
+    //     type: String,
+    //     required: true, 
+    //     max: 300
+    // },
+    // code: {
+    //     type: Number,
+    //     required: true, 
+    //     max: 9999
+    // },
+    // stock: {
+    //     type: Number,
+    //     required: true, 
+    //     max: 100
+    // }
 })
 module.exports = model('Products', productSchema)

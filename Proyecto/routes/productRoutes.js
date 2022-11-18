@@ -1,19 +1,10 @@
-const Products = require('../containerDB/productsMDB.js')
-const ProductsDaoFile = require('../doas/products/productsDaoFile.js')
-const ProductsDaoFirebase = require('../doas/products/productsDaoFirebase.js')
-const ProductsDaoMem = require('../doas/products/productsDaoMem.js')
+// const ProductsDaoFile = require('../doas/products/productsDaoFile.js')
 const ProductsDaoMongoDb = require('../doas/products/productsDaoMongoDb.js')
-
-const { options } = require('../config.js')
-const knex = require('knex') (options.mysql)
 
 const {Router} = require('express')
 const router = Router()
 
-// const products = new Products(knex, 'products')
 // const products = new ProductsDaoFile()
-// const prodcuts = new ProductsDaoFirebase()
-// const products = new ProductsDaoMem()
 const products = new ProductsDaoMongoDb()
 
 //////////////// rutas ////////////////
@@ -39,10 +30,10 @@ router.get('/:id', async (req, res) => {
 
 ///add item
 router.post('/', async (req, res) => {
-    const {title, description, code, price, thumbnail, stock} = req.body
+    const {title, price, thumbnail} = req.body
     try {
-        if (title && description && code && price && thumbnail && stock) {
-            await products.save({title, description, code, price, thumbnail, stock})
+        if (title && price && thumbnail) {
+            await products.save({title, price, thumbnail})
             res.status(201).json({message: 'Product added'})
         } 
     } catch (error) {
@@ -52,8 +43,8 @@ router.post('/', async (req, res) => {
 
 /// update item
 router.put('/:id', async (req, res) => {
-    const {title, description, code, price, thumbnail, stock} = req.body
-    const updateProduct = {title, description, code, price, thumbnail, stock}
+    const {title, price, thumbnail} = req.body
+    const updateProduct = {title, price, thumbnail}
     try {
         res.status(201).json(await products.update(updateProduct, req.params.id))
     } catch (error) {

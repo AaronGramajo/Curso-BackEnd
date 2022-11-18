@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add products</title>
+    <title>Main Page</title>
+    <link rel="stylesheet" href="./css/styles.css">
     <script src="/socket.io/socket.io.js"></script>
 </head>
 
 <body>
     <div>
-        <h1>Enter Product</h1>
+        <div>
+            <h1>Welcome <span id="userName"></span>!</h1>
+        </div>
+        <div>
+            <button id="logOutButton"><a href="session/logout">Log out</a></button>
+        </div>
+    </div>
+
+    <div>
+        <h2>Enter Product</h2>
         <form onsubmit="return addProduct(this)" enctype="multipart/form-data">
             <label for="title">Product name</label><br>
             <input type="text" name="title" id="title" required><br>
-
-            <label for="description">Product description</label><br>
-            <input type="text" name="description" id="description" ><br>
-
-            <label for="code">Serial code</label><br>
-            <input type="number" name="code" id="code" ><br>
 
             <label for="price">Price</label><br>
             <input type="number" name="price" id="price" required><br>
 
             <label for="thumbnail">Product photo URL</label><br>
             <input type="text" name="thumbnail" id="thumbnail" required><br>
-
-            <label for="stock">Stock</label><br>
-            <input type="number" name="stock" id="stock" ><br>
 
             <button>Send</button>
         </form>
@@ -40,8 +40,7 @@
         <hr>
     </div>
     <div>
-        <h3>Chat messages (compressed: <span id='compressed-info'></span>%)</h3>
-        <form onsubmit="return addMessage(this)">
+        <form onsubmit="return addMessage(this)" enctype="multipart/form-data">
             <label for="email">Email</label><br>
             <input type="email" name="email" id="email" placeholder="Pepito@gmail.com" required><br><br>
 
@@ -54,17 +53,20 @@
             <label for="age">Age</label><br>
             <input type="number" name="age" id="age" placeholder="25" required><br><br>
 
+            <label for="alias">Alias</label><br>
+            <input type="text" name="alias" id="alias" placeholder="Amadeus" required><br><br>
+
             <label for="avatar">Avatar</label><br>
             <input type="text" name="avatar" id="avatar" placeholder="URL" required><br><br>
 
-            <input type="text" name="message" id="textMessage" placeholder="Write message here..." required>
+            <input type="text" name="textMessage" id="textMessage" placeholder="Write message here..." required>
             <button>Send message</button>
         </form><hr>
         <div id="messages"></div>
     </div>
-    <!-- <script src="./js/main.js"></script> -->
+    <script src="./js/main.js"></script>
     <script src="./js/chat.js"></script>
-    <script src="./js/mock.js"></script>
+    <!-- <script src="./js/mock.js"></script> -->
 </body>
 
 </html>

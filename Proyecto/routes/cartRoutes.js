@@ -1,26 +1,18 @@
 const {Router} = require('express')
 const cartRouter = Router()
 
-const CartsDaoFile = require('../doas/carts/cartsDaoFile.js')
-const CartsDaoFirebase = require('../doas/carts/cartsDaoFirebase.js')
+// const CartsDaoFile = require('../doas/carts/cartsDaoFile.js')
 const CartsDaoMongoDb = require('../doas/carts/cartsDaoMongoDb')
-const CartsDaoMem = require('../doas/carts/cartsDaomem')
 
-const ProductsDaoFile = require('../doas/products/productsDaoFile.js')
-const ProductsDaoFirebase = require('../doas/products/productsDaoFirebase.js')
-const ProductsDaoMem = require('../doas/products/productsDaoMem.js')
+// const ProductsDaoFile = require('../doas/products/productsDaoFile.js')
 const ProductsDaoMongoDb = require('../doas/products/productsDaoMongoDb.js')
 
 const admin = require('../middlewares/Admin.js')
 
 // const carts = new CartsDaoFile()
-// const carts = new CartsDaoFirebase()
 const carts = new CartsDaoMongoDb()
-// const carts = new CartsDaoMem()
 
 // const products = new ProductsDaoFile()
-// const products = new ProductsDaoFirebase()
-// const products = new ProductsDaoMem()
 const products = new ProductsDaoMongoDb()
 
 ///create new cart

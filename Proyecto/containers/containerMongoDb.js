@@ -5,7 +5,7 @@ class ContainerMongoDb extends Connect {
     async getAll() {
         try {
             const models = await this.model.find()
-            console.log(models)
+            return models
         } catch (error) {
             console.log(error)
         }
@@ -14,7 +14,7 @@ class ContainerMongoDb extends Connect {
     async getById(id) {
         try {
             const product = await this.model.find({_id: id})
-            console.log(product)
+            return product
         } catch (error) {
             console.log(`product not found, ${error}`)
         }

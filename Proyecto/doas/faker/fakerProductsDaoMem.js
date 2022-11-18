@@ -1,11 +1,9 @@
-const ContainerMemory = require('../../containers/containerMemory.js')
+const ContainerFile = require('../../containers/containerFiles.js')
 const FakerMock = require('../../utils/faker.js')
 
-let products = []
-
-class FakerProductDaoMem extends ContainerMemory {
+class FakerProductDaoMem extends ContainerFile {
     constructor() {
-        super(products)
+        super('container/faker.txt')
     }
 
     addProducts() {

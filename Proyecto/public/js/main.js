@@ -7,19 +7,14 @@ const Fetch = async (url, options) => {
         server.emit('newProductList', data)
     } catch (error) {
         console.log(error)
-    } finally {
-        document.querySelector('form').reset()
     }
 }
 
 const addProduct = (e) => {
     const product = {
         title: document.querySelector('#title').value,
-        description: document.querySelector('#description').value,
-        code: document.querySelector('#code').value,
         price: document.querySelector('#price').value,
         thumbnail: document.querySelector('#thumbnail').value,
-        stock: document.querySelector('#stock').value
     }
     const options = {
         method: 'POST',
@@ -31,18 +26,14 @@ const addProduct = (e) => {
 
 const renderProduct = (data) => {
     let table = '<table class="table table-striped table-dark">'
-    table += '<thead><tr><th>Id</th><th>Timestamp</th><th>Title</th><th>Description</th><th>Serial Code</th><th>Price</th><th>Photo URL</th><th>Stock</th></tr></thead>'
+    table += '<thead><tr><th>Id</th><th>Title</th><th>Price</th><th>Photo URL</th></tr></thead>'
     table += '<tbody>'
     data.forEach(item => {
         table += `<tr>
-            <th>${item.id}</th>
-            <th>${item.timestamp}</th>
+            <th>${item._id}</th>
             <th>${item.title}</th>
-            <th>${item.description}</th>
-            <th>${item.code}</th>
             <th>${item.price}</th>
             <th><img src=${item.thumbnail} alt="" border=1 height=48 width=48></th>
-            <th>${item.stock}</th>
         </tr>`
     })
     table += '</tbody></table>'
@@ -51,6 +42,7 @@ const renderProduct = (data) => {
 
 server.on('productList', (data) => {
     console.log('se recibieron los products')
+    console.log(data)
     if(!data.length) {
         document.querySelector('#tableProducts').innerHTML = `<h2>No products found</h2>`
     } else {

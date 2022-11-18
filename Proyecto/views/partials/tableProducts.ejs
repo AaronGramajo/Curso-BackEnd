@@ -1,0 +1,20 @@
+<div>
+    <h2>Enter Product</h2>
+    <form onsubmit="return addProduct(this)" enctype="multipart/form-data">
+        <label for="title">Product name</label><br>
+        <input type="text" name="title" id="title" required><br>
+
+        <label for="price">Price</label><br>
+        <input type="number" name="price" id="price" required><br>
+
+        <label for="thumbnail">Product photo URL</label><br>
+        <input type="text" name="thumbnail" id="thumbnail" required><br>
+
+        <button>Send</button>
+    </form>
+    <h2>List of products</h2>
+    <div>
+        <div id="tableProducts"></div>
+    </div>
+    <hr>
+</div>

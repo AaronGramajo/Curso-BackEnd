@@ -18,7 +18,7 @@
         <button type="submit">Enviar</button>
     </form> -->
 
-    <h1>Welcome to chat</h1>
+    <!-- <h1>Welcome to chat</h1>
     <div>
         <label for="email">Email</label><br>
         <input type="email" name="email" id="email">
@@ -28,9 +28,22 @@
         <input type="text" id="message">
         <button type="submit" id="send">Send</button>
     </div>
-    <div id="campoMensajes"></div>
+    <div id="campoMensajes"></div> -->
+    <h1>Login</h1>
+    <form action="/session/login" method="post">
+        <div>
+            <label for="email">Username</label><br>
+            <input type="text" name="username" id="email" placeholder="Enter Email">
+        </div>
+        <div>
+            <label for="password">Password</label><br>
+            <input type="password" name="password" id="password" placeholder="Password">
+            <button type="submit" id="send">Login</button>
+        </div>
+    </form>
 
-    <!-- <script src="/index.js"></script> -->
-    <script src="/main.js"></script>
+    <!-- <script src="/index.js"></script>
+    <script src="/main.js"></script> -->
+    <script src="/login.js"></script>
 </body>
 </html>

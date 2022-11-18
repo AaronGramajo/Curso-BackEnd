@@ -1,0 +1,25 @@
+<div>
+    <form onsubmit="return addMessage(this)" enctype="multipart/form-data">
+        <label for="email">Email</label><br>
+        <input type="email" name="email" id="email" placeholder="Pepito@gmail.com" required><br><br>
+
+        <label for="firstName">First name</label><br>
+        <input type="text" name="firstName" id="firstName" placeholder="El Pepe" required><br><br>
+
+        <label for="lastName">Last name</label><br>
+        <input type="text" name="lastName" id="lastName" placeholder="Sanchez" required><br><br>
+
+        <label for="age">Age</label><br>
+        <input type="number" name="age" id="age" placeholder="25" required><br><br>
+
+        <label for="alias">Alias</label><br>
+        <input type="text" name="alias" id="alias" placeholder="Amadeus" required><br><br>
+
+        <label for="avatar">Avatar</label><br>
+        <input type="text" name="avatar" id="avatar" placeholder="URL" required><br><br>
+
+        <input type="text" name="textMessage" id="textMessage" placeholder="Write message here..." required>
+        <button>Send message</button>
+    </form><hr>
+    <div id="messages"></div>
+</div>
