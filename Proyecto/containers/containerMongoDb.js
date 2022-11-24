@@ -16,7 +16,16 @@ class ContainerMongoDb extends Connect {
             const product = await this.model.find({_id: id})
             return product
         } catch (error) {
-            console.log(`product not found, ${error}`)
+            console.log(`${this.model} not found, ${error}`)
+        }
+    }
+
+    async getUsername(username) {
+        try {
+            const user = await this.model.findOne({username: username})
+            return user
+        } catch (error) {
+            console.log(`username not found, ${error}`)
         }
     }
 

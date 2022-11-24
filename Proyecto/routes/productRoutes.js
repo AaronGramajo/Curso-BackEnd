@@ -1,10 +1,7 @@
-// const ProductsDaoFile = require('../doas/products/productsDaoFile.js')
 const ProductsDaoMongoDb = require('../doas/products/productsDaoMongoDb.js')
-
 const {Router} = require('express')
-const router = Router()
 
-// const products = new ProductsDaoFile()
+const router = Router()
 const products = new ProductsDaoMongoDb()
 
 //////////////// rutas ////////////////
