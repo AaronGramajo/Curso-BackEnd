@@ -5,7 +5,6 @@ const {auth} = require("../middlewares/auth")
 
 const loginRoute = Router()
 
-
 //register
 loginRoute.get('/register', (req, res) => {
     res.render('pages/register.ejs')

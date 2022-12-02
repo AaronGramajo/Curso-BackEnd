@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>info</title>
+</head>
+<body>
+    <div>
+        <div>
+            <h1>Info del proyecto</h1>
+        </div>
+        <div>
+            <ul>
+                <li>Argumentos de entrada: 
+                    <%= process.title %>
+                </li>
+                <li>Nombre de la plataforma: 
+                    <%= process.platform %>
+                </li>
+                <li>Version de node.js: 
+                    <%= process.version %>
+                </li>
+                <li>Memoria total reservada (rss): 
+                    <%= process.memoryUsage() %>
+                </li>
+                <li>Path de ejecucion: 
+                    <%= process.execPath %>
+                </li>
+                <li>Process id: 
+                    <%= process.pid %>
+                </li>
+                <li>Carpeta del Proyecto: 
+                    <%= process.cwd() %>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
