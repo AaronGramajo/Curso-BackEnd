@@ -53,7 +53,7 @@ app.all('*', (req, res) => {
 // const productList = new FakerProductDaoMem()
 // app.use('/api/productos-test', apiTestRoute)
 
-const port = 8080
+const port = process.argv[2] || 8080
 const server = httpServer.listen(port,()=>{
     console.log(`listening on port ${server.address().port}`)
 })

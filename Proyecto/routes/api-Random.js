@@ -28,5 +28,21 @@ apiRandomRouter.get('/', (req, res) => {
     }
 })
 
+//forever
+
+//commands
+//forever start filename
+//forever stopall filename
+
+//pm2
+
+//commands
+
+//pm2 start filename --name="Serverx" --watch --port
+//pm2 start filename --name="Server1" --watch --3000
+//pm2 start filename --name="Server2" --watch --3030
+
+//pm2 start filename --name="Server3" --watch -i max --4030
+
 
 module.exports = apiRandomRouter
