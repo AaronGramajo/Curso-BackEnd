@@ -1,5 +1,6 @@
 const ProductsDaoMongoDb = require('../doas/products/productsDaoMongoDb.js')
 const {Router} = require('express')
+const logger = require('../utils/log4js.js')
 
 const router = Router()
 const products = new ProductsDaoMongoDb()
@@ -11,7 +12,7 @@ router.get('/', async (req, res) => {
     try {
         res.status(200).json(await products.getAll())
     } catch (error) {
-        res.status(404).json({message: `Products not found ${error}`})
+        res.status(404).send(logger.error(`Products not found ${error}`))
     }
 })
 
