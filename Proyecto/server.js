@@ -55,6 +55,6 @@ app.all('*', (req, res) => {
 
 const PORT = process.argv[2] || 8080
 const server = httpServer.listen(PORT,()=>{
-    console.log(`listening on port ${server.address().PORT}`)
+    console.log(`listening on port ${server.address().port}`)
 })
 server.on('error', (err)=> console.log(`Error en el servidor ${err}`))
