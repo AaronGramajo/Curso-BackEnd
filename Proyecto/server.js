@@ -54,7 +54,7 @@ app.all('*', (req, res) => {
 // app.use('/api/productos-test', apiTestRoute)
 
 const PORT = process.argv[2] || 8080
-const server = httpServer.listen(PORT,()=>{
-    console.log(`listening on port ${server.address().port}`)
-})
-server.on('error', (err)=> console.log(`Error en el servidor ${err}`))
+
+httpServer.listen(PORT,()=>{
+    console.log(`listening on port ${PORT}`)
+}).on('error', (err)=> console.log(`Error en el servidor ${err}`))
