@@ -23,7 +23,6 @@ const routeCart = require('./routes/cartRoutes.js')
 const loginRoute = require('./routes/sessionRoutes.js')
 const infoRouter = require('./routes/infoRoutes.js')
 const apiRandomRouter = require('./routes/api-Random.js')
-// const apiTestRoute = require('./routes/api-Test.js')
 
 //////////////// template engine ////////////////
 app.set('views', './views')
@@ -48,13 +47,8 @@ app.all('*', (req, res) => {
     })
 })
 
-////////////////  mock ////////////////
-// const FakerProductDaoMem = require('./doas/faker/fakerProductsDaoMem.js')
-// const productList = new FakerProductDaoMem()
-// app.use('/api/productos-test', apiTestRoute)
-
 const PORT = process.argv[2] || 8080
-
-httpServer.listen(PORT,()=>{
-    console.log(`listening on port ${PORT}`)
-}).on('error', (err)=> console.log(`Error en el servidor ${err}`))
+const server = httpServer.listen(PORT,()=>{
+    console.log(`listening on port ${server.address().port}`)
+})
+server.on('error', (err)=> console.log(`Error en el servidor ${err}`))

@@ -6,10 +6,6 @@ apiRandomRouter.get('/', (req, res) => {
     try {
         let cant = req.query.cant
         if(!cant) {
-            // for (let i = 0; i < 10000000; i++) {
-            //     let ranNum = Math.floor(Math.random()*10000000)+1
-            //     generatedNums.push(ranNum)
-            // }
             const computing = fork('utils/randomNumbers.js')
             computing.send('start')
             computing.on('message', message => {
