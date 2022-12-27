@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
         const product = await products.getById(req.params.id)
         res.status(200).json(product)
     } catch (error) {
-        res.status(404).json({message: `Product not found ${error}`})
+        res.status(404).send(logger.error(`Product not found ${error}`))
     }
 })
 
