@@ -1,3 +1,0 @@
-<h1>{{titulo1}}</h1>
-<h2>{{titulo2}}</h2>
-<p>hola yo soy {{nombre}} {{apellido}}</p>
