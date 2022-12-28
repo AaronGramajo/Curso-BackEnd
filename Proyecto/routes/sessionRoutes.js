@@ -50,12 +50,12 @@ loginRoute.get('/logout', (req, res) => {
 
 // failed register
 loginRoute.get('/failRegister', (req, res) => {
-    res.send('plis try to register again')
+    res.send('Please try to register again')
 })
 
 // failed login
 loginRoute.get('/failLogin', (req, res) => {
-    res.send('plis try to login again')
+    res.send('Please try to login again')
 })
 
 // github
