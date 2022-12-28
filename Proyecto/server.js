@@ -47,7 +47,7 @@ app.all('*', (req, res) => {
     })
 })
 
-const PORT = process.argv[2] || 8080
+const PORT = process.argv[2] || process.env.PORT || 8080
 const server = httpServer.listen(PORT,()=>{
     console.log(`listening on port ${server.address().port}`)
 })
