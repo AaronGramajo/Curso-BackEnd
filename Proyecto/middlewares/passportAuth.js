@@ -7,7 +7,7 @@ const initPassport = () => {
     passport.use('login', new GithubStrategy({
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: 'http://localhost:8080/api/auth/githubcallback'
+        callbackURL: 'https://curso-backend-production.up.railway.app/api/auth/githubcallback'
     }, async (accessToken, refreshToken, profile, done) => {
         let username = profile.username
     
