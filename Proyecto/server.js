@@ -23,6 +23,7 @@ const routeCart = require('./routes/cartRoutes.js')
 const loginRoute = require('./routes/sessionRoutes.js')
 const infoRouter = require('./routes/infoRoutes.js')
 const apiRandomRouter = require('./routes/api-Random.js')
+const bodyParser = require('body-parser')
 
 //////////////// template engine ////////////////
 app.set('views', './views')
@@ -30,6 +31,7 @@ app.set('view engine', 'ejs')
 
 // middlewares
 app.use(json())
+app.use(bodyParser.json())
 app.use(urlencoded({extended:true}))
 app.use(session(configMongo))
 app.use(static(__dirname + '/public'))

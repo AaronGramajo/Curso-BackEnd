@@ -14,7 +14,7 @@ const postLogin = async (req, res) => {
     if(!isValidPassword(user, password)) {
         return res.status(401).render('pages/failLogin.ejs')
     }
-    res.send('login success!')
+    res.redirect('/api/auth/')
 }
 
 const postRegister = async (req, res) => {

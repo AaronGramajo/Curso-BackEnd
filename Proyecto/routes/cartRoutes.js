@@ -1,18 +1,12 @@
 const {Router} = require('express')
 const cartRouter = Router()
 
-// const CartsDaoFile = require('../doas/carts/cartsDaoFile.js')
 const CartsDaoMongoDb = require('../doas/carts/cartsDaoMongoDb')
-
-// const ProductsDaoFile = require('../doas/products/productsDaoFile.js')
 const ProductsDaoMongoDb = require('../doas/products/productsDaoMongoDb.js')
 
 const admin = require('../middlewares/Admin.js')
 
-// const carts = new CartsDaoFile()
 const carts = new CartsDaoMongoDb()
-
-// const products = new ProductsDaoFile()
 const products = new ProductsDaoMongoDb()
 
 ///create new cart
@@ -30,15 +24,17 @@ cartRouter.delete('/:id',(req, res) => {
 })
 
 ///get cart items
-cartRouter.get('/:id/products', admin,(req, res) => {
+cartRouter.get('/:id/products', admin, async (req, res) => {
     let admin = true
     if(admin == false) {
         res.json({error: 'unauthorized access to route'})
     } else {
         const {id} = req.params
-        let cart = carts.getById(id)
-        if(cart.products.length != 0 ) {
-            res.status(200).json({id: cart.id, products: cart.products})
+        let cart = await carts.getById(id)
+        console.log(cart)
+        console.log(cart[0].product)
+        if(cart[0].product.length != 0 ) {
+            res.status(200).json({id: cart.id, products: cart.product})
         } else {
             res.status(404).json({message: 'Product not found'})
         }
@@ -47,15 +43,38 @@ cartRouter.get('/:id/products', admin,(req, res) => {
 })
 
 ///add item to cart
-cartRouter.post('/:id/products', (req, res) => {
-    const {id} = req.params
-    let cart = carts.getById(id)
-    const body = req.body.id_prod
-    body.forEach(id_prod => {
-		let prod = products.getById(id_prod)
-		cart.products.push(prod) })
-    carts.update(cart)
-    res.status(200).json({message: 'products added to cart', cart: cart})
+cartRouter.post('/:id/products', async (req, res) => {
+    // const {id} = req.params
+    // let cart = carts.getById(id)
+    // const body = req.body.id_prod
+    // console.log(req.body)
+    // body.forEach(id_prod => {
+	// 	let prod = products.getById(id_prod)
+	// 	cart.products.push(prod) })
+    // carts.update(cart)
+    // res.status(200).json({message: 'products added to cart', cart: cart})
+    try {
+        const {id} = req.params
+        let cart = await carts.getById(id)
+        cart = cart[0]
+        console.log(cart)
+        // console.log(cart.product)
+        console.log(req.body)
+        req.body.forEach(async (_id) => {
+            let prod = await products.getById(_id)
+            console.log(prod)
+            cart.product.push(prod[0])
+            console.log(cart.product)
+            console.log(cart)
+        })
+        // carts.update(cart.product[0], id)
+        // console.log(await carts.getById(id))
+        // console.log(cart)
+        // console.log(cart.product)
+        res.status(200).json({message: 'products added to cart', cart: cart})
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 /// delete cart item

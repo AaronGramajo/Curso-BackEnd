@@ -36,7 +36,7 @@ class CartsDaoMongoDb extends ContainerMongoDb {
 
     async update(product, id) {
         try {
-            await this.model.updateOne({_id: id}, {$set: {product: {title: product.title, description: product.description, code: product.code, price: product.price, thumbnail: product.thumbnail, stock: product.stock}}})
+            await this.model.updateOne({_id: id}, {$set: {product: {_id: product._id, title: product.title, price: product.price, thumbnail: product.thumbnail}}})
             console.log('cart updated')
         } catch (error) {
             console.log(`could not update product, ${error}`)
