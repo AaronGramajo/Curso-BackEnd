@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const MongoStore = require('connect-mongo')
+const loggerCustom = require('../../utils/log4js')
 require('dotenv').config()
 
 class Connect {
@@ -15,9 +16,18 @@ class Connect {
                 useNewUrlParser: true,
                 useUnifiedTopology: true
             })
-            console.log('Database connected')
+            loggerCustom.info('Database connected')
         } catch (error) {
-                console.log(error)
+            loggerCustom.error(`error conecting to database, ${error}`)
+            }
+        }
+
+        async disconnect() {
+            try {
+                await mongoose.connection.close()
+                loggerCustom.info('Database disconnected')
+            } catch (error) {
+                loggerCustom.error(`error disconnecting database, ${error}`)
             }
         }
     }

@@ -1,6 +1,5 @@
-const { models } = require('mongoose')
-const {Connect} = require('../config')
-const loggerCustom = require('../utils/log4js')
+const {Connect} = require('./config')
+const loggerCustom = require('../../utils/log4js')
 
 class ContainerMongoDb extends Connect {
 
@@ -9,7 +8,7 @@ class ContainerMongoDb extends Connect {
             const models = await this.model.find()
             return models
         } catch (error) {
-            loggerCustom.error(`no ${models} found, ${error}`)
+            loggerCustom.error(`no ${this.model} found, ${error}`)
         }
     }
 
@@ -25,7 +24,6 @@ class ContainerMongoDb extends Connect {
     async save(item) {
         try {
             const newitem = new this.model(item)
-            console.log(newitem)
             await newitem.save()
             console.log(`new product added ${newitem}`)
         } catch (error) {
