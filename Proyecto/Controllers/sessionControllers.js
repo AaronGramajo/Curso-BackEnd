@@ -1,4 +1,4 @@
-const UsersDaoMongoDb = require('../doas/users/usersDaoMongoDb.js')
+const UsersDaoMongoDb = require('../data_Persistence/Daos/users/usersDaoMongoDb.js')
 const {createHash, isValidPassword} = require('../utils/bCrypt.js')
 
 const Users = new UsersDaoMongoDb()

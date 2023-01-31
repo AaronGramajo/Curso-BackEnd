@@ -22,15 +22,15 @@ class Connect {
             }
         }
 
-        async disconnect() {
-            try {
-                await mongoose.connection.close()
-                loggerCustom.info('Database disconnected')
-            } catch (error) {
-                loggerCustom.error(`error disconnecting database, ${error}`)
-            }
+    async disconnect() {
+        try {
+            await mongoose.connection.close()
+            loggerCustom.info('Database disconnected')
+        } catch (error) {
+            loggerCustom.error(`error disconnecting database, ${error}`)
         }
     }
+}
 
 const mongoAtlas = {
     mongoUrl: process.env.MONGO_CLOUD,

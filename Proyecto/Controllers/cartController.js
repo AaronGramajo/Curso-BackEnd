@@ -1,5 +1,5 @@
-const CartsDaoMongoDb = require('../doas/carts/cartsDaoMongoDb')
-const ProductsDaoMongoDb = require('../doas/products/productsDaoMongoDb.js')
+const CartsDaoMongoDb = require('../data_Persistence/Daos/carts/cartsDaoMongoDb')
+const ProductsDaoMongoDb = require('../data_Persistence/Daos/products/productsDaoMongoDb.js')
 
 const loggerCustom = require('../utils/log4js')
 

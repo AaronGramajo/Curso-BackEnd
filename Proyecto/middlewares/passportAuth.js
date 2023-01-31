@@ -1,5 +1,5 @@
 const passport = require('passport')
-const UsersDaoMongoDb = require('../doas/users/usersDaoMongoDb')
+const UsersDaoMongoDb = require('../data_Persistence/Daos/users/usersDaoMongoDb')
 const GithubStrategy = require('passport-github2').Strategy
 const Users = new UsersDaoMongoDb()
 

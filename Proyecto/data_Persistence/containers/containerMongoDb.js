@@ -17,7 +17,7 @@ class ContainerMongoDb extends Connect {
             const product = await this.model.find({_id: id})
             return product
         } catch (error) {
-            loggerCustom.error(`product in ${this.model} not found, ${error}`)
+            loggerCustom.error(`product not found, ${error}`)
         }
     }
 

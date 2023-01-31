@@ -1,9 +1,9 @@
 ////////////////  products Mongo ////////////////
-const ProductsDaoMongoDb = require('../doas/products/productsDaoMongoDb.js')
+const ProductsDaoMongoDb = require('../data_Persistence/Daos/products/productsDaoMongoDb.js')
 const productList = new ProductsDaoMongoDb()
 
 ////////////////  messages Mongo ////////////////
-const MessagesDaoMongoDB = require('../doas/messages/messagesDaoMongoDB.js')
+const MessagesDaoMongoDB = require('../data_Persistence/Daos/messages/messagesDaoMongoDB.js')
 const messages = new MessagesDaoMongoDB()
 
 //////////////// webSocket ////////////////

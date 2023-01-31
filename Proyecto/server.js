@@ -5,7 +5,7 @@ const initSocket = require('./webSocket/webSocket.js')
 
 //////////////// session ////////////////
 const session = require('express-session')
-const { configMongo } = require('./config.js')
+const { configMongo } = require('./data_Persistence/containers/config.js')
 const passport = require('passport')
 const { initPassport } = require('./middlewares/passportAuth.js')
 
