@@ -1,6 +1,6 @@
 <div>
-    <h2>Enter Product</h2>
-    <form onsubmit="return addProduct(this)" enctype="multipart/form-data">
+    <!-- <h2>Enter Product</h2>
+    <form action="/api/products" method="post" enctype="multipart/form-data">
         <label for="title">Product name</label><br>
         <input type="text" name="title" id="title" required><br>
 
@@ -10,11 +10,22 @@
         <label for="thumbnail">Product photo URL</label><br>
         <input type="text" name="thumbnail" id="thumbnail" required><br>
 
-        <button>Send</button>
-    </form>
+        <button type="submit">Send</button>
+    </form> -->
     <h2>List of products</h2>
     <div>
-        <div id="tableProducts"></div>
+        <% if (productsExist) { %>
+            <div class="table-responsive">
+                <table class="table table-dark">
+                    <tr> <th>Nombre</th> <th>Precio</th> <th>Foto</th></tr>
+                    <% products.forEach(product=>{ %>
+                        <tr> <td><%= product.title %></td> <td><%= product.price %></td> <td><img width="50" src=<%= product.thumbnail %> alt="not found"></td> <td><button data-set=<%= product._id %> >add to cart</button></td> </tr> 
+                    <% }); %>
+                </table>
+            </div>
+        <% } else { %>
+            <h2>No products found</h2>
+        <% } %>
     </div>
     <hr>
 </div>

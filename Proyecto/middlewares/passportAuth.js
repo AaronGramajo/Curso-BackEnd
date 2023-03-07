@@ -28,12 +28,12 @@ const initPassport = () => {
     
     // guarda el id del usuario en la session
     passport.serializeUser((user, done) => {
-        done(null, user.username)
+        done(null, user._id)
     })
     
     // busca al usuario por su id para autorizar
-    passport.deserializeUser((username, done) => {
-        let user = Users.getUsername(username)
+    passport.deserializeUser((id, done) => {
+        let user = Users.getById(id)
         done(null, user)
     })
 }

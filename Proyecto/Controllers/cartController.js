@@ -48,33 +48,14 @@ const getCartItems = async (req, res) => {
 }
 
 const addCartItem = async (req, res) => {
-    // const {id} = req.params
-    // let cart = carts.getById(id)
-    // const body = req.body.id_prod
-    // console.log(req.body)
-    // body.forEach(id_prod => {
-	// 	let prod = products.getById(id_prod)
-	// 	cart.products.push(prod) })
-    // carts.update(cart)
-    // res.status(200).json({message: 'products added to cart', cart: cart})
     try {
         const {id} = req.params
         let cart = await carts.getById(id)
         cart = cart[0]
-        console.log(cart)
-        // console.log(cart.product)
-        console.log(req.body)
         req.body.forEach(async (_id) => {
             let prod = await products.getById(_id)
-            console.log(prod)
             cart.product.push(prod[0])
-            console.log(cart.product)
-            console.log(cart)
         })
-        // carts.update(cart.product[0], id)
-        // console.log(await carts.getById(id))
-        // console.log(cart)
-        // console.log(cart.product)
         res.status(200).json({message: 'products added to cart', cart: cart})
     } catch (error) {
         res.status(400).send(loggerCustom.error(`problem adding item to cart ${error}`))

@@ -22,7 +22,6 @@ const routeProducts = require('./routes/productRoutes.js')
 const routeCart = require('./routes/cartRoutes.js')
 const loginRoute = require('./routes/sessionRoutes.js')
 const infoRouter = require('./routes/infoRoutes.js')
-const apiRandomRouter = require('./routes/api-Random.js')
 const bodyParser = require('body-parser')
 
 //////////////// template engine ////////////////
@@ -42,7 +41,6 @@ app.use('/api/products', routeProducts)
 app.use('/api/cart', routeCart)
 app.use('/api/auth', loginRoute)
 app.use('/info', infoRouter)
-app.use('/api/random', apiRandomRouter)
 app.all('*', (req, res) => {
     return res.status(404).send({
         Error: 'path not found'

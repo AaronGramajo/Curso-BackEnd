@@ -1,4 +1,5 @@
 const ContainerMongoDb = require('../../containers/containerMongoDb.js')
+const loggerCustom = require('../../../utils/log4js.js')
 
 const Carts = require('../../models/cartModel.js')
 
@@ -11,9 +12,9 @@ class CartsDaoMongoDb extends ContainerMongoDb {
         try {
             const newCart = new this.model(cart)
             await newCart.save()
-            console.log(`new cart added ${newCart}`)
+            loggerCustom.info(`new cart added ${newCart}`)
         } catch (error) {
-            console.log(error)
+            loggerCustom.error(`error creating cart, ${error}`)
         }
     }
 
@@ -21,25 +22,25 @@ class CartsDaoMongoDb extends ContainerMongoDb {
         try {
             return await this.model.find({_id: id})
         } catch (error) {
-            console.log(`could not find cart, ${error}`)
+            loggerCustom.error(`could not find cart, ${error}`)
         }
     }
 
     async deleteCart(id) {
         try {
             await this.model.deleteOne({_id: id})
-            console.log('cart deleted')
+            loggerCustom.info('cart deleted')
         } catch (error) {
-            console.log(`could not delete cart, ${error}`)
+            loggerCustom.error(`could not delete cart, ${error}`)
         }
     }
 
     async update(product, id) {
         try {
             await this.model.updateOne({_id: id}, {$set: {product: {_id: product._id, title: product.title, price: product.price, thumbnail: product.thumbnail}}})
-            console.log('cart updated')
+            loggerCustom.info('cart updated')
         } catch (error) {
-            console.log(`could not update product, ${error}`)
+            loggerCustom.error(`could not update product, ${error}`)
         }
     }
 
@@ -47,9 +48,9 @@ class CartsDaoMongoDb extends ContainerMongoDb {
         try {
             let cart = await this.model.get({_id: id})
             await cart.deleteOne({prod_id})
-            console.log('product deleted')
+            loggerCustom.info('product deleted')
         } catch (error) {
-            console.log(`could not delete product, ${error}`)
+            loggerCustom.error(`could not delete product, ${error}`)
         }
     }
 }

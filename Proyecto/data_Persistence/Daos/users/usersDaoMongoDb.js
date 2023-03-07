@@ -1,4 +1,5 @@
 const ContainerMongoDb = require('../../containers/containerMongoDb.js')
+const loggerCustom = require('../../../utils/log4js.js')
 
 const Users = require('../../models/userModel.js')
 
