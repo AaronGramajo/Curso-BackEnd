@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muebleria-Login</title>
+</head>
+<body>
+    <h1>Buyer info</h1>
+    <form action="/finishOrder" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="name">Name</label><br>
+            <input type="text" name="name" id="name" placeholder="Enter name">
+        </div>
+        <div>
+            <label for="lastName">Last Name</label><br>
+            <input type="text" name="lastName" id="lastName" placeholder="lastName">
+        </div>
+        <div>
+            <label for="email">Email</label><br>
+            <input type="email" name="email" id="email" placeholder="Enter email">
+        </div>
+        <button type="submit" id="finishOrder">Process order</button>
+    </form>
+</body>
+</html>

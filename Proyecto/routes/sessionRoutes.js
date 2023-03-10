@@ -22,7 +22,7 @@ loginRoute.post('/login', postLogin)
 loginRoute.get('/failLogin', loginFailed)
 
 // logged in
-loginRoute.get('/', verifyToken, LoggedIn)
+loginRoute.get('/', LoggedIn)
 
 // visitas
 loginRoute.get('/visitas', auth, (req, res) => {

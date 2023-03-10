@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Login</h1>
-    <form action="/api/auth/login" method="post">
+    <form action="/api/auth/login" method="post" enctype="multipart/form-data">
         <div>
             <label for="username">Username</label><br>
             <input type="text" name="username" id="username" placeholder="Enter Email">
@@ -16,7 +16,7 @@
         <div>
             <label for="password">Password</label><br>
             <input type="password" name="password" id="password" placeholder="Password">
-            <button type="submit" id="send">Login</button>
+            <a href="/api/auth"><button type="submit" id="send">Login</button></a>
         </div>
     </form>
 

@@ -15,3 +15,47 @@
 [2023-01-31T02:47:37.835] [ERROR] custom - product not found, CastError: Cast to ObjectId failed for value "23" (type string) at path "_id" for model "Products"
 [2023-01-31T02:49:24.321] [ERROR] custom - product not found, CastError: Cast to ObjectId failed for value "23" (type string) at path "_id" for model "Products"
 [2023-01-31T02:50:43.613] [ERROR] custom - product not found, CastError: Cast to ObjectId failed for value "23" (type string) at path "_id" for model "Products"
+[2023-03-10T02:29:46.846] [ERROR] custom - ReferenceError: decoded is not defined
+    at verifyToken (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\middlewares\auth.js:37:21)
+    at Layer.handle [as handle_request] (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:47:12)
+[2023-03-10T02:31:16.406] [ERROR] custom - TypeError: Cannot read properties of undefined (reading 'data')
+    at C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\middlewares\auth.js:38:33
+    at Object.module.exports [as verify] (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\jsonwebtoken\verify.js:82:12)
+    at verifyToken (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\middlewares\auth.js:37:13)
+    at Layer.handle [as handle_request] (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:280:10)
+[2023-03-10T02:57:57.327] [ERROR] custom - TypeError: req.headers is not a function
+    at verifyToken (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\middlewares\auth.js:15:25)
+    at Layer.handle [as handle_request] (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:47:12)
+[2023-03-10T03:32:07.243] [ERROR] custom - ReferenceError: authorization is not defined
+    at verifyToken (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\middlewares\auth.js:15:21)
+    at Layer.handle [as handle_request] (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\layer.js:95:5)
+    at next (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\route.js:144:13)
+    at Route.dispatch (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\route.js:114:3)
+    at Layer.handle [as handle_request] (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\layer.js:95:5)
+    at C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:284:15
+    at Function.process_params (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:346:12)
+    at next (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:280:10)
+    at Function.handle (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:175:3)
+    at router (C:\Users\Aaron\Documents\Curso BackEnd\Proyecto\node_modules\express\lib\router\index.js:47:12)

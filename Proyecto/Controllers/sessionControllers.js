@@ -11,21 +11,27 @@ const getLogin = (req, res) => {
 }
 
 const postLogin = async (req, res) => {
-    const { username, password } = req.body
-    req.session.user = username
-    req.session.admin = true
-    const user = await Users.getByUsername(username)
-    if(!user) {
-        return res.status(401).render('pages/failLogin.ejs')
+    try {
+        const { username, password } = req.body
+        req.session.user = username
+        req.session.admin = true
+        const user = await Users.getByUsername(username)
+        if(!user) {
+            return res.status(401).render('pages/failLogin.ejs')
+        }
+        if(!isValidPassword(user, password)) {
+            return res.status(401).render('pages/failLogin.ejs')
+        }
+    
+        const access_token = generateToken(user);
+        req.headers.authorization = access_token
+        delete user.password;
+    
+        res.status(200).json({access_token})
+        
+    } catch (error) {
+        res.status(500).json({error: error.message})
     }
-    if(!isValidPassword(user, password)) {
-        return res.status(401).render('pages/failLogin.ejs')
-    }
-
-    generateToken(user);
-    delete user.password;
-
-    res.redirect('/api/auth/')
 }
 
 const getRegister = (req, res) => {

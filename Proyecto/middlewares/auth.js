@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+require('dotenv').config()
 const customLogger = require('../utils/log4js.js')
 
 const auth = (req, res , next) => {
@@ -11,18 +12,21 @@ const auth = (req, res , next) => {
 
 const verifyToken = async (req, res, next) => {
     try {
-        let token = req.header('Authorization');
-
-        if (!token) {
-            return res.status(403).send('Access denied')
+        const authHeader = req.headers.authorization
+        if (!authHeader) {
+            return res.status(401).json({
+                error: "not authenticated"
+            })
         }
-
-        if(token.startsWith("Bearer ")) {
-            token = token.slice(7, token.length).trimLeft();
-        }
-
-        const verified = jwt.verify(token, process.env.JWT_PRIVATE_KEY);
-        req.user = verified;
+        let token = authHeader.split(' ')[1];
+        jwt.verify(token, process.env.JWT_PRIVATE_KEY, (err, decoded) => {
+            if(err) {
+                return res.status(403).json({
+                    error: "Access denied"
+                })
+            }
+            req.user = decoded.data
+        })
         next()
     } catch (error) {
         customLogger.error(error)
